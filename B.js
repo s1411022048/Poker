@@ -1,50 +1,44 @@
 var Readline = require("readline-sync");
 
-function Brackets(Read){
+function Brackets(Read) {
     let Stack = [];
-
-    for(i = 0;i < Read.length;i++){
+    for (i = 0; i < Read.length; i++) {
         let X = Read[i];
-        if(X == "(" ||X == "["||X == "{"){
+        if (X == "(" || X == "[" || X == "{") {
             Stack.push(X);
             continue;
         }
-        if(Stack.length == 0){
+        if (Stack.length == 0) {
             return false;
         }
-
         let check;
-        switch(X){
+        switch (X) {
             case ")":
                 check = Stack.pop();
-                if(check == "{" || check == "["){
+                if (check == "{" || check == "[") {
                     return false;
                 }
                 break;
-
             case "]":
                 check = Stack.pop();
-                if(check == "{" || check == "("){
+                if (check == "{" || check == "(") {
                     return false;
                 }
                 break;
-            
             case "}":
                 check = Stack.pop();
-                if(check == "[" || check == "("){
+                if (check == "[" || check == "(") {
                     return false;
                 }
-                break; 
+                break;
         }
-
     }
-    return(Stack.length == 0);
+    return (Stack.length == 0);
 }
-
 var Read = Readline.question();
-if(Brackets(Read)){
+if (Brackets(Read)) {
     console.log("Balanced");
 }
-else{
+else {
     console.log("Not Balanced");
 }
